@@ -7,17 +7,19 @@
     body {
       font-family: "Courier New";
       text-align: justify;
-      padding-right: 100px; /* Adds spacing inside the content area on the right */
+      padding-right: 100px;
+      margin: 0; /* Remove default margin to make bottom fixed div align properly */
     }
-  h1 {
-    margin-top: 5px; /* Reduce space below h1 */
-    margin-bottom: 5px; /* Reduce space below h1 */
-  }
+    
+    h1 {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
 
-  h2 {
-    margin-top: 5px; /* Reduce space above h2 */
-    margin-bottom: 5px; /* Reduce space above h2 */
-  }
+    h2 {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
 
     a:link,
     a:visited {
@@ -32,6 +34,39 @@
     a:active {
       color: blue;
     }
+
+    /* Sliding text at the bottom */
+    .sliding-bottom {
+      position: fixed;       /* Always at the bottom */
+      bottom: 0;
+      width: 100%;
+      background-color: #ffeb3b; /* Yellow background */
+      color: red;
+      font-weight: bold;
+      font-size: 20px;
+      white-space: nowrap;   /* Prevent wrapping */
+      overflow: hidden;      /* Hide overflow */
+      box-sizing: border-box;
+      padding: 10px 0;
+      z-index: 9999;         /* Keep on top of other elements */
+    }
+
+.sliding-text {
+  display: inline-block;
+  padding-left: 100%;   
+  animation: slide-left 30s linear infinite;
+  animation-play-state: running; /* Ensure it runs by default */
+}
+
+/* Pause animation on hover */
+.sliding-bottom:hover .sliding-text {
+  animation-play-state: paused;
+}
+
+    @keyframes slide-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
   </style>
 </head>
 <body>
@@ -39,95 +74,98 @@
     <tr valign="top">
       <td id="layout-menu" style="border-right: 1px solid white; padding-right:40px;">
         <div class="menu-item" style="margin-bottom: 10px;"><a href="index.html" class="current">Home</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="experience.html">Current Research Interests and Ongoing Work</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="teaching.html">Teaching&nbsp;Area</a></div>
-  <div class="menu-item" style="margin-bottom: 8px;"><a href="publications.html">Publications</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="students.html">Student Guidance</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="awards.html">Awards&nbsp;and&nbsp;Recognitions</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="srp.html">Sponsered&nbsp;Research&nbsp;Projects</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="research.html">Administrative&nbsp;Responsibilities</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="lab.html">Lab&nbsp;Facilities</a></div>
+        <div class="menu-item" style="margin-bottom: 10px;"><a href="experience.html">Current Research Interests and Ongoing Work</a></div>
+        <div class="menu-item" style="margin-bottom: 10px;"><a href="teaching.html">Teaching&nbsp;Area</a></div>
+        <div class="menu-item" style="margin-bottom: 8px;"><a href="publications.html">Publications</a></div>
+        <div class="menu-item" style="margin-bottom: 10px;"><a href="students.html">Student Guidance</a></div>
+        <div class="menu-item" style="margin-bottom: 10px;"><a href="awards.html">Awards&nbsp;and&nbsp;Recognitions</a></div>
+        <div class="menu-item" style="margin-bottom: 10px;"><a href="srp.html">Sponsered&nbsp;Research&nbsp;Projects</a></div>
+        <div class="menu-item" style="margin-bottom: 10px;"><a href="research.html">Administrative&nbsp;Responsibilities</a></div>
+        <div class="menu-item" style="margin-bottom: 10px;"><a href="lab.html">Lab&nbsp;Facilities</a></div>
 
-<!-- Office Info Below Menu -->
-  <div class="office-info">
-    <h2>Office</h2>
-    <p>
-      National Aerosol Facility, Room-803<br>
-      IIT Kanpur,<br>
-      Kanpur 208016
-    </p>
+        <!-- Office Info Below Menu -->
+        <div class="office-info">
+          <h2>Office</h2>
+          <p>
+            National Aerosol Facility, Room-803<br>
+            IIT Kanpur,<br>
+            Kanpur 208016
+          </p>
 
-    <p>
-      <strong>Office Phone</strong><br>
-      (O): 0512-259-2060
-    </p>
+          <p>
+            <strong>Office Phone</strong><br>
+            (O): 0512-259-2060
+          </p>
 
-    <p>
-      <strong>Email:</strong> gauravt[AT]iitk.ac.in
-    </p>
+          <p>
+            <strong>Email:</strong> gauravt[AT]iitk.ac.in
+          </p>
 
-    <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3570.139229805877!2d80.22805107488131!3d26.515646277042663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c36fdb92b505d%3A0x778cffad0048de8c!2sNational%20Aerosol%20Facility%20(Aerosol%20Building)!5e0!3m2!1sen!2sin!4v1751483317534!5m2!1sen!2sin" 
-      width="100%" height="300" style="border:0; margin-top:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </div>
-
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3570.139229805877!2d80.22805107488131!3d26.515646277042663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c36fdb92b505d%3A0x778cffad0048de8c!2sNational%20Aerosol%20Facility%20(Aerosol%20Building)!5e0!3m2!1sen!2sin!4v1751483317534!5m2!1sen!2sin" 
+            width="100%" height="300" style="border:0; margin-top:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
       </td>
-      <td id="layout-content" style="position: relative;">
-       
- <table>
-  <tr>
-    <td>
-      <img src="Gaurav.png" alt="Profile Photo" width="400">
-    </td>
-    <td style="padding-left: 15px; vertical-align: top;">
 
-      <h1><strong>Gaurav Tiwari</strong><br></h1>
-      <h2>Associate Professor<br></h2>
-  Hi! I am an Associate Professor in the 
-  <a href="https://www.iitk.ac.in/ce/" target="_blank" style="text-decoration: none; color: blue;">
-  Department of Civil Engineering
-  </a> at
-  <a href="https://www.iitk.ac.in" target="_blank" style="text-decoration: none; color: blue;">
-    Indian Institute of Technology, Kanpur
-  </a>. 
-  I lead the Engineering Rock Mechanics Lab and my research primarily focuses on experimental 
-  and numerical analyses of rock structures.
-    </td>
-  </tr>
-</table>
+      <td id="layout-content" style="position: relative;">
+        <table>
+          <tr>
+            <td>
+              <img src="Gaurav.png" alt="Profile Photo" width="400">
+            </td>
+            <td style="padding-left: 15px; vertical-align: top;">
+              <h1><strong>Gaurav Tiwari</strong><br></h1>
+              <h2>Associate Professor<br></h2>
+              Hi! I am an Associate Professor in the 
+              <a href="https://www.iitk.ac.in/ce/" target="_blank" style="text-decoration: none; color: blue;">
+              Department of Civil Engineering
+              </a> at
+              <a href="https://www.iitk.ac.in" target="_blank" style="text-decoration: none; color: blue;">
+                Indian Institute of Technology, Kanpur
+              </a>. 
+              I lead the Engineering Rock Mechanics Lab and my research primarily focuses on experimental 
+              and numerical analyses of rock structures.
+            </td>
+          </tr>
+        </table>
 
         <h2>Biography</h2>
-<hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 20px">
-<p>
-  I received my bachelor's degree from 
-<a href="https://www.mbm.ac.in/" target="_blank" style="text-decoration: none; color: blue;">
-MBM Govt Eng. College Jodhpur</a>, my M.Tech from 
-<a href="https://www.iitr.ac.in/" target="_blank" style="text-decoration: none; color: blue;">
-Indian Insitute of Technology (IIT) Roorkee </a> in 2013
-(Advisor: <a href="https://civil.iitr.ac.in/CE?Uid=nksamfce" target="_blank" style="text-decoration: none; color: blue;">Narendra Kumar Samadhiya</a>) and PhD degree from 
-<a href="https://iisc.ac.in/" target="_blank" style="text-decoration: none; color: blue;">
-Indian Institute of Science, Bengaluru </a>in 2018 (Advisor: <a href="https://www.civil.iisc.ac.in/people/madhavi-latha-g/" target="_blank" style="text-decoration: none; color: blue;">Madhavi Latha G)</a>. Prior to joining Indian Institute of Technology (IIT) Kanpur, I was a Postdoctoral Research Associate at 
-<a href="https://iisc.ac.in/" target="_blank" style="text-decoration: none; color: blue;">
-Indian Institute of Science, Bengaluru</a>. My work at IISc focused on experimental rock mechanics with focus on rate dependent behaviour of rocks and application of probabilistic and statistical methods for reliability analysis in rock engineering. My current research focuses on dynamic response of rocks, grain based modelling of rocks, hybrid reliability methodologies for rock engineering considering polymorphic uncertainty modelling and THMC modelling of rocks for energy storage applications. 
-</p>
-<ul>
-<li><strong>Associate Professor</strong>, Department of Civil Engineering, IIT Kanpur, India (2024 – Present)</li>
-<li><strong>Assistant Professor</strong>, Department of Civil Engineering, IIT Kanpur, India (December 2018 – 2024)</li>
-<li><strong>Post-Doctoral Research Associate</strong>, Indian Institute of Science (IISc), Bangalore (January 2018 – November 2018)</li>
-</ul>
-<h2>Research Interests</h2>
-<hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 20px">
-<p>
-  Geotechnical Engineering <br>
-  Experimental Rock Mechanics<br>
-  Probabilistic Rock Engineering<br>
-  Numerical Modelling in Rock Engineering<br>
-  AI/ML in Rock Engineering<br>
-  Stochastic THMC Modelling in Rock Engineering<br>
-  Probabilistic Grain Scale Modelling in Rock Engineering<br>
-</p>
+        <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 20px">
+        <p>
+          I received my bachelor's degree from 
+          <a href="https://www.mbm.ac.in/" target="_blank" style="text-decoration: none; color: blue;">
+          MBM Govt Eng. College Jodhpur</a>, my M.Tech from 
+          <a href="https://www.iitr.ac.in/" target="_blank" style="text-decoration: none; color: blue;">
+          Indian Insitute of Technology (IIT) Roorkee </a> in 2013
+          (Advisor: <a href="https://civil.iitr.ac.in/CE?Uid=nksamfce" target="_blank" style="text-decoration: none; color: blue;">Narendra Kumar Samadhiya</a>) and PhD degree from 
+          <a href="https://iisc.ac.in/" target="_blank" style="text-decoration: none; color: blue;">
+          Indian Institute of Science, Bengaluru </a>in 2018 (Advisor: <a href="https://www.civil.iisc.ac.in/people/madhavi-latha-g/" target="_blank" style="text-decoration: none; color: blue;">Madhavi Latha G)</a>. Prior to joining Indian Institute of Technology (IIT) Kanpur, I was a Postdoctoral Research Associate at 
+          <a href="https://iisc.ac.in/" target="_blank" style="text-decoration: none; color: blue;">
+          Indian Institute of Science, Bengaluru</a>. My work at IISc focused on experimental rock mechanics with focus on rate dependent behaviour of rocks and application of probabilistic and statistical methods for reliability analysis in rock engineering. My current research focuses on dynamic response of rocks, grain based modelling of rocks, hybrid reliability methodologies for rock engineering considering polymorphic uncertainty modelling and THMC modelling of rocks for energy storage applications. 
+        </p>
+        <ul>
+          <li><strong>Associate Professor</strong>, Department of Civil Engineering, IIT Kanpur, India (2024 – Present)</li>
+          <li><strong>Assistant Professor</strong>, Department of Civil Engineering, IIT Kanpur, India (December 2018 – 2024)</li>
+          <li><strong>Post-Doctoral Research Associate</strong>, Indian Institute of Science (IISc), Bangalore (January 2018 – November 2018)</li>
+        </ul>
+        <h2>Research Interests</h2>
+        <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 20px">
+        <p>
+          Geotechnical Engineering <br>
+          Experimental Rock Mechanics<br>
+          Probabilistic Rock Engineering<br>
+          Numerical Modelling in Rock Engineering<br>
+          AI/ML in Rock Engineering<br>
+          Stochastic THMC Modelling in Rock Engineering<br>
+          Probabilistic Grain Scale Modelling in Rock Engineering<br>
+        </p>
       </td>
     </tr>
   </table>
+
+  <!-- Sliding Attention Line -->
+  <div class="sliding-bottom">
+    <div class="sliding-text">Looking for prospective Post-Doctoral researchers – Positions open! Apply Now!</div>
+  </div>
 </body>
 </html>
