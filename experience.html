@@ -1,36 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta charset="utf-8" />
 <title>Gaurav Tiwari - IIT Kanpur</title>
 <style>
 /* Body & font */
 body {
   font-family: "Courier New", Courier, monospace;
-  font-size: 14px; /* Matches original body size */
+  font-size: 14px;
   text-align: justify;
   margin: 0;
   padding: 0;
-  padding-right: 100px; /* spacing inside content */
+  padding-right: 100px;
 }
 
 /* Headings */
 h1 {
   margin-top: 0;
-  font-size: 40px; /* original first code */
+  font-size: 40px;
   padding-left: 2.5px;
   padding-top: 11px;
 }
 
 h2 {
   margin-top: 0;
-  font-size: 25px; /* original first code */
+  font-size: 25px;
   padding-top: 6px;
 }
 
 /* Links */
-a:link,
-a:visited {
+a:link, a:visited {
   color: blue;
   text-decoration: none;
 }
@@ -43,22 +42,28 @@ a:active {
 
 /* Layout */
 #layout-menu {
-  font-size: 16px; /* original first code */
-  padding-left: 11px;
-  padding-top: 11px;
+  font-size: 16px;
+  padding-left: 9px;
+  padding-top: 9px;
   border-right: 1px solid white;
   padding-right: 10px;
 }
+
+#layout-menu .menu-item a {
+  font-weight: bold;
+}
+
 #layout-content {
   padding-top: 0;
 }
 
-/* Video & Slideshow */
+/* Flex Media Layouts */
 .media-row {
   display: flex;
   justify-content: flex-start;
   gap: 40px;
   margin-top: 20px;
+  flex-wrap: wrap;
 }
 
 .video-container {
@@ -66,7 +71,6 @@ a:active {
   height: 110px;
   overflow: hidden;
 }
-
 .video-container video {
   width: 100%;
   height: auto;
@@ -79,7 +83,6 @@ a:active {
   height: auto;
   overflow: visible;
 }
-
 .full-video-container video {
   width: 100%;
   height: auto;
@@ -87,23 +90,27 @@ a:active {
   display: block;
 }
 
+/* Slideshow */
 .slideshow-container {
   width: 400px;
-  height: 300px;
+  height: 300px; /* Fixed height to prevent caption jumping */
   position: relative;
   border: 1px solid white;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .slideshow-container img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensures image fits without changing container height */
+  position: absolute;
+  top: 0;
+  left: 0;
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  position: absolute;
 }
 
 .slideshow-container img.active {
@@ -112,13 +119,24 @@ a:active {
 
 .caption {
   text-align: center;
-  margin-top: 8px;
-  font-size: 16px; /* original first code */
+  margin-top: 5px; /* Fixed margin so it doesn't jump */
+  font-size: 16px;
   font-weight: bold;
 }
 
-.media-column {
-  text-align: center;
+/* Responsive for smaller screens */
+@media (max-width: 900px) {
+  body {
+    padding-right: 20px;
+  }
+  .media-row, .uncertainty-section {
+    flex-direction: column;
+    align-items: center;
+  }
+  .slideshow-container {
+    width: 90%;
+    height: auto;
+  }
 }
 </style>
 </head>
@@ -126,6 +144,8 @@ a:active {
 <body>
 <table summary="Table for page layout." id="tlayout">
 <tr valign="top">
+
+<!-- Left menu -->
 <td id="layout-menu" style="border-right: 1px solid white; padding-right:40px;">
   <div class="menu-item" style="margin-bottom: 10px;"><a href="index.html" class="current">Home</a></div>
   <div class="menu-item" style="margin-bottom: 10px;"><a href="experience.html">Current Research Interests and Ongoing Work</a></div>
@@ -133,10 +153,10 @@ a:active {
   <div class="menu-item" style="margin-bottom: 8px;"><a href="publications.html">Publications</a></div>
   <div class="menu-item" style="margin-bottom: 10px;"><a href="students.html">Student Guidance</a></div>
   <div class="menu-item" style="margin-bottom: 10px;"><a href="awards.html">Awards&nbsp;and&nbsp;Recognitions</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="srp.html">Sponsered&nbsp;Research&nbsp;Projects</a></div>
+  <div class="menu-item" style="margin-bottom: 10px;"><a href="srp.html">Sponsored&nbsp;Research&nbsp;Projects</a></div>
   <div class="menu-item" style="margin-bottom: 10px;"><a href="research.html">Administrative&nbsp;Responsibilities</a></div>
   <div class="menu-item" style="margin-bottom: 10px;"><a href="lab.html">Lab&nbsp;Facilities</a></div>
-<!-- Office Info Below Menu -->
+  <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 10px">
   <div class="office-info">
     <h2>Office</h2>
     <p>
@@ -144,111 +164,201 @@ a:active {
       IIT Kanpur,<br>
       Kanpur 208016
     </p>
-
-    <p>
-      <strong>Office Phone</strong><br>
-      (O): 0512-259-2060
-    </p>
-
-    <p>
-      <strong>Email:</strong> gauravt[AT]iitk.ac.in
-    </p>
+    <p><strong>Office Phone</strong><br>(O): 0512-259-2060</p>
+    <p><strong>Email:</strong> gauravt[AT]iitk.ac.in</p>
 
     <iframe 
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3570.139229805877!2d80.22805107488131!3d26.515646277042663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c36fdb92b505d%3A0x778cffad0048de8c!2sNational%20Aerosol%20Facility%20(Aerosol%20Building)!5e0!3m2!1sen!2sin!4v1751483317534!5m2!1sen!2sin" 
-      width="100%" height="300" style="border:0; margin-top:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      width="100%" height="300" style="border:0; margin-top:10px;" allowfullscreen="" loading="lazy"></iframe>
   </div>
-
+          <p>
+            Created by Sameer Lawankar
+          </p>
 </td>
 
+<!-- Main content -->
 <td id="layout-content">
   <h2>Current Research Interests and Ongoing Work</h2>
-<div style="text-align: center;">
-  <img 
-    src="https://i0.wp.com/archeyes.com/wp-content/uploads/2024/12/IIT_Kanpur-Kanpur-Indian-Institute-of-Technology-by-Kanvinde-Rai-and-Chowdhury.jpg?ssl=1" 
-    alt="IIT Kanpur" 
-    style="max-width: 90%; height: auto; max-height: 400px; border: 1px solid #ccc; border-radius: 4px;">
-</div>
-  <h2>Current Research Interests🔍</h2>
-  <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 10px;">
+  <div style="text-align: center;">
+    <img src="Current_Research.jpg" alt="Research Photo" style="width:600px; height:auto; display:block; margin: 20px auto;">
+  </div>
+<hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 10px;">
+ <h2><u>Uncertainty Analysis in Rock Engineering</u></h2>
 
+<!-- Text Section -->
+<div style="text-align: justify; min-width: 300px; margin-bottom: 20px;">
   <p>
-    Our group works on the themes of information centric uncertainty modelling of rock properties based on stochastic and non-stochastic modelling of rock properties, and hybrid reliability methodologies to deal with these uncertainties. Other areas are application of Bayesian Multi-Model Inference for sensitivity/reliability analyses in rock engineering, THMC modelling of rocks for energy storage purposes and grain scale modelling of rocks. In the experimental rock mechanics, we are currently looking for dynamic response of rocks and couples it with DIC, fragmentation analyses to understand the associated mechanisms. 
+    Rock properties exhibit both aleatory variability and epistemic uncertainties of intrinsic and extrinsic nature. A single rock engineering problem may thus involve parameters with multiple types of uncertainty. Depending on their nature, some properties are modeled probabilistically, while others require non-probabilistic approaches such as fuzzy, interval, or convex models.
+    To address this complexity, we develop hybrid reliability methodologies that integrate interval, random, and bounded field theories for unified uncertainty modeling and propagation in rock engineering systems such as excavations and slopes.
   </p>
+  <p>
+    Another major research direction involves Bayesian techniques for characterizing rock properties using multi-model inference. We develop Bayesian methods capable of accounting for model and parameter uncertainties and propagating them through reliability and global sensitivity analyses (e.g., Sobol’s and Borgonovo’s indices). The framework is further extended to incorporate spatial variability of inputs, enhancing the robustness and realism of rock engineering assessments.
+  </p>
+</div>
 
-  <!-- Numerical Modelling Section -->
-  <h2>Numerical modelling insights</h2>
-  <div class="media-row">
-    <div style="margin-top: 80px;">
-      <div class="video-container">
-        <video autoplay muted loop>
-          <source src="SHPB_Video.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <p class="caption">Split Hopkinson Pressure Bar (SHPB) modelling</p>
-    </div>
+<!-- Photos Section -->
+<div class="uncertainty-section" style="display: flex; align-items: flex-start; gap: 30px; flex-wrap: wrap; justify-content: center;">
 
-    <div>
-      <div class="media-column" style="margin-left: 0px;">
-        <div class="slideshow-container">
-          <img src="Surabhi/1.png" class="active">
-          <img src="Surabhi/2.png">
-          <img src="Surabhi/3.png">
-          <img src="Surabhi/4.png">
-          <img src="Surabhi/5.png">
-        </div>
-        <p class="caption" style="margin-left: 0px;">
-          Insights about convex modeling based<br> on non-probabilistic reliability analysis in the presence of limited data
-        </p>
-      </div>
+  <!-- Left: _S Photos -->
+  <div style="flex: 1; text-align: center; min-width: 250px;">
+    <div class="slideshow-container">
+      <img src="1_S.png" class="active">
+      <img src="2_S.png">
+      <img src="3_S.png">
+      <img src="4_S.png">
+      <img src="5_S.png">
     </div>
   </div>
 
-  <!-- Experimental Insights Section -->
-  <h2>Experimental Insights</h2>
-  <div class="media-row">
-    <div style="margin-top: -10px;">
-      <div class="full-video-container">
-        <video autoplay muted loop controls>
-          <source src="Experimental.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <p class="caption">Experimental setup visualization</p>
+  <!-- Right: _Akshay Photos -->
+  <div style="flex: 1; text-align: center; min-width: 250px;">
+    <div class="slideshow-container">
+      <img src="1_Akshay.jpg" class="active">
+      <img src="2_Akshay.jpg">
+      <img src="3_Akshay.jpg">
+      <img src="4_Akshay.jpg">
+      <img src="5_Akshay.jpg">
+      <img src="6_Akshay.jpg">
     </div>
+      </div>
 
-    <div>
-      <div class="media-column" style="margin-left: 0px;">
-        <div style="margin-top: -20px;">
-          <div class="slideshow-container">
-            <img src="Animesh/1.jpg" class="active">
-            <img src="Animesh/2.jpg">
-            <img src="Animesh/3.jpg">
-            <img src="Animesh/4.jpg">
-          </div>
-          <p class="caption" style="margin-left: 0px;">
-            Insights about micro mechanisms in rock mechanics<br> using advanced computer technology.
-          </p>
-        </div>
-      </div>
+</div>
+
+<hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 10px;">
+<h2><u>Assessment of Dynamic Response of Rocks</u></h2>
+
+<!-- Text Section -->
+<div style="text-align: justify; min-width: 300px; margin-bottom: 20px;">
+  <p>
+    Rocks are often subjected to high loading rates in the field due to processes such as blasting and excavation. Understanding their behavior under dynamic conditions is therefore crucial. Our research focuses on investigating the mechanical response and progressive fracturing of rocks under such conditions using Split Hopkinson Pressure Bar (SHPB) testing coupled with high-speed imaging and Digital Image Correlation (DIC). We further employ numerical modeling to simulate these experiments and analyze the underlying grain-scale mechanisms.
+  </p>
+</div>
+
+<!-- Video + Slideshow Section -->
+<div class="uncertainty-section" style="display: flex; align-items: flex-start; gap: 30px; flex-wrap: wrap; justify-content: center;">
+
+  <!-- Left: Experimental Video -->
+  <div style="flex: 1; text-align: center; min-width: 250px;">
+    <div class="full-video-container">
+      <video autoplay muted loop style="display: block; margin: 0 auto; width: 80%; height: auto;">
+        <source src="Experimental.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
+    
   </div>
+
+  <!-- Right: Slideshow Images -->
+  <div style="flex: 1; text-align: center; min-width: 250px;">
+  <div class="slideshow-container" style="width: 300px; height: 200px; margin: 0 auto;">
+      <img src="1_A.jpg" class="active">
+      <img src="2_A.jpg">
+      <img src="3_A.jpg">
+      <img src="4_A.jpg">
+    </div>
+    
+  </div>
+
+</div>
+
+<hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 10px;">
+<h2><u>Grain-Scale Modelling of Rocks</u></h2>
+
+<!-- Text Section -->
+<div style="text-align: justify; min-width: 300px; margin-bottom: 20px;">
+  <p>
+    The macro-mechanical response of rocks is governed by the evolving micro-mechanisms that occur at the grain scale under various loading conditions. Understanding these evolving processes is essential for interpreting the mechanical behavior of rocks across different environments. Our research investigates these grain-scale mechanisms through numerical modeling approaches such as the Bonded Block Model (BBM) and Continuum Grain-Based Modeling (CGBM). In particular, we focus on dynamic loading conditions, incorporating the effects of mineral grain and contact variability using random, interval, and bounded field theories.
+  </p>
+</div>
+
+<!-- Slideshow + Video Section -->
+<div class="uncertainty-section" style="display: flex; align-items: flex-start; gap: 30px; flex-wrap: wrap; justify-content: center;">
+
+  <!-- Left: Slideshow Images (Smaller) -->
+  <div style="flex: 1; text-align: center; min-width: 250px;">
+    <div class="slideshow-container" style="width: 300px; height: 200px; margin: 0 auto;">
+      <img src="1_Sameer.png" class="active" style="width: 100%; height: 100%; object-fit: contain;">
+      <img src="2_Sameer.png" style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+      </div>
+
+  <!-- Right: Video -->
+  <div style="flex: 1; text-align: center; min-width: 250px;">
+    <div style="overflow: hidden; height: 100px; width: 300px; margin: 0 auto;">
+      <video autoplay muted loop style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center;">
+        <source src="SHPB_Video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+      </div>
+
+</div>
+
+<hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 10px;">
+<h2><u>THMC-Coupled Modelling of Rocks</u></h2>
+<!-- Text Section -->
+<div style="text-align: justify; min-width: 300px; margin-bottom: 20px;">
+  <p>
+    The stresses generated along the periphery of an underground cavern are influenced by multiple interacting physical processes. It is therefore essential to analyze and understand how these processes are coupled at the macroscale. Such caverns can be engineered for the storage of hydrogen (H₂), carbon dioxide (CO₂), compressed air, and other gases. In this research, we investigate the coupled thermo-hydro-mechanical-chemical (THMC) processes that govern the stability and serviceability of storage caverns throughout their operational life cycle. Additionally, for hydrogen storage applications, it is crucial to incorporate a thin lining—such as rubber or fiber-reinforced polymer (FRP)—around the cavern perimeter to prevent gas leakage and ensure system integrity.
+  </p>
+</div>
+
+<!-- Slideshow + Visualization Section -->
+<div class="uncertainty-section" style="display: flex; align-items: flex-start; gap: 30px; flex-wrap: wrap; justify-content: center;">
+
+  <!-- Left: Slideshow Images (Smaller) -->
+  <div style="flex: 1; text-align: center; min-width: 250px;">
+    <div class="slideshow-container" style="width: 300px; height: 200px; margin: 0 auto;">
+      <img src="1_Yatharth.png" class="active" style="width: 100%; height: 100%; object-fit: contain;">
+      <img src="2_Yatharth.png" style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+     </div>
+
+  <!-- Right: Visualization (GIF/Image) -->
+  <div style="flex: 1; text-align: center; min-width: 250px;">
+    <div style="width: 300px; height: 200px; margin: 0 auto; overflow: hidden;">
+      <img src="Yatharth_Video.gif" alt="Numerical Simulation Visualization" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+    </div>
+      </div>
+
+</div>
+
 </td>
 </tr>
 </table>
 
 <script>
-document.querySelectorAll('.slideshow-container').forEach(container => {
-  const imgs = container.querySelectorAll('img');
-  let index = 0;
-  setInterval(() => {
-    imgs[index].classList.remove('active');
-    index = (index + 1) % imgs.length;
-    imgs[index].classList.add('active');
-  }, 4000);
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.slideshow-container').forEach(container => {
+    const imgs = container.querySelectorAll('img');
+    let index = 0;
+    if (imgs.length > 0) {
+      imgs[index].classList.add('active');
+      setInterval(() => {
+        imgs[index].classList.remove('active');
+        index = (index + 1) % imgs.length;
+        imgs[index].classList.add('active');
+      }, 4000);
+    }
+  });
 });
 </script>
+
+<div style="
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    transform: rotate(0deg);
+    transform-origin: left bottom;
+    font-size: 12px;
+    color: #555;
+    background: transparent;
+    padding: 5px;
+    white-space: nowrap;
+    font-weight: bold;
+">
+  Created by Sameer Lawankar
+</div>
 
 </body>
 </html>
