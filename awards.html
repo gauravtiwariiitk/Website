@@ -8,6 +8,10 @@ body {
       text-align: justify;
       padding-right: 100px; /* Adds spacing inside the content area on the right */
     }
+#layout-menu .menu-item a {
+  font-weight: bold;
+}
+
   h1 {
     margin-top: 5px; /* Reduce space below h1 */
     margin-bottom: 5px; /* Reduce space below h1 */
@@ -35,16 +39,18 @@ body {
 <body>
 <table summary="Table for page layout." id="tlayout">
 <tr valign="top">
-<td id="layout-menu" style="border-right: 1px solid white; padding-right:10px;">
+<td id="layout-menu" style="border-right: 1px solid white; padding-right:40px;">
   <div class="menu-item" style="margin-bottom: 10px;"><a href="index.html" class="current">Home</a></div>
   <div class="menu-item" style="margin-bottom: 10px;"><a href="experience.html">Current Research Interests and Ongoing Work</a></div>
   <div class="menu-item" style="margin-bottom: 10px;"><a href="teaching.html">Teaching&nbsp;Area</a></div>
   <div class="menu-item" style="margin-bottom: 8px;"><a href="publications.html">Publications</a></div>
   <div class="menu-item" style="margin-bottom: 10px;"><a href="students.html">Student Guidance</a></div>
   <div class="menu-item" style="margin-bottom: 10px;"><a href="awards.html">Awards&nbsp;and&nbsp;Recognitions</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="srp.html">Sponsered&nbsp;Research&nbsp;Projects</a></div>
+  <div class="menu-item" style="margin-bottom: 10px;"><a href="srp.html">Sponsored&nbsp;Research&nbsp;Projects</a></div>
   <div class="menu-item" style="margin-bottom: 10px;"><a href="research.html">Administrative&nbsp;Responsibilities</a></div>
   <div class="menu-item" style="margin-bottom: 10px;"><a href="lab.html">Lab&nbsp;Facilities</a></div>
+  <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 10px">
+
 <!-- Office Info Below Menu -->
   <div class="office-info">
     <h2>Office</h2>
@@ -65,7 +71,7 @@ body {
 
     <iframe 
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3570.139229805877!2d80.22805107488131!3d26.515646277042663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c36fdb92b505d%3A0x778cffad0048de8c!2sNational%20Aerosol%20Facility%20(Aerosol%20Building)!5e0!3m2!1sen!2sin!4v1751483317534!5m2!1sen!2sin" 
-      width="100%" height="200" style="border:0; margin-top:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      width="100%" height="300" style="border:0; margin-top:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 </td>
 <td id="layout-content">
@@ -101,10 +107,6 @@ across four different cities (Auckland, Wellington,Christchurch, and Queenstown.
 <li><p>Invited lecture on our work of application of resampling statistics in rock engineering by lecture series on AGERP. This is a platform which invites reputed professionals around the
 world to discuss their recent works. 
 </p>
-</li>
-<li><p>Guest Editor, Special Issue, Rock Microphysics Scientific Reports, Nature
-</p>
-</li>
 
 <li><p>Received IGS-Roorkee Chapter YGE Award for Best Paper on Rock Mechanics and Rock Engineering (2021)
 </p>
@@ -143,5 +145,21 @@ Indian Geotechnical Journal, Springer<br>
 </li>
 </ul>
 </table>
+
+<div style="
+    position: fixed;
+    bottom: 45px;
+    right: -200px; /* adjust to move it into view */
+    transform: rotate(-90deg);
+    transform-origin: left bottom; /* pivot so rotated text is visible */
+    font-size: 12px;
+    color: #555;
+    background: transparent;
+    padding: 5px;
+    white-space: nowrap;
+    font-weight: bold;
+">
+  Created by Sameer Lawankar
+</div>
 </body>
 </html>
