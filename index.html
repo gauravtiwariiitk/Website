@@ -82,6 +82,44 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-100%); }
     }
+
+   /* Responsive font size for mobile devices */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px; /* smaller text on tablets and phones */
+    padding-right: 20px; /* less padding for small screens */
+  }
+
+  #layout-menu {
+    font-size: 14px;
+    padding-right: 10px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  /* Make table layout stack vertically on very small screens */
+  #tlayout {
+    display: block;
+  }
+
+  #tlayout td {
+    display: block;
+    width: 100%;
+  }
+
+  /* Make image responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+ 
   </style>
 </head>
 <body>
@@ -198,6 +236,7 @@
 
 </body>
 </html>
+
 
 
 
