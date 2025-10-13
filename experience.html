@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gaurav Tiwari - IIT Kanpur</title>
 <style>
 /* Body & font */
@@ -15,30 +16,13 @@ body {
 }
 
 /* Headings */
-h1 {
-  margin-top: 0;
-  font-size: 40px;
-  padding-left: 2.5px;
-  padding-top: 11px;
-}
-
-h2 {
-  margin-top: 0;
-  font-size: 25px;
-  padding-top: 6px;
-}
+h1 { margin-top: 0; font-size: 40px; padding-left: 2.5px; padding-top: 11px;text-align: left;}
+h2 { margin-top: 0; font-size: 25px; padding-top: 6px;text-align: left;}
 
 /* Links */
-a:link, a:visited {
-  color: blue;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-a:active {
-  color: blue;
-}
+a:link, a:visited { color: blue; text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:active { color: blue; }
 
 /* Layout */
 #layout-menu {
@@ -49,17 +33,11 @@ a:active {
   padding-right: 10px;
   text-align: left;
 }
-
-#layout-menu .menu-item a {
-  font-weight: bold;
-}
-
-#layout-content {
-  padding-top: 0;
-}
+#layout-menu .menu-item a { font-weight: bold; }
+#layout-content { padding-top: 0; }
 
 /* Flex Media Layouts */
-.media-row {
+.media-row, .uncertainty-section {
   display: flex;
   justify-content: flex-start;
   gap: 40px;
@@ -67,34 +45,13 @@ a:active {
   flex-wrap: wrap;
 }
 
-.video-container {
-  width: 600px;
-  height: 110px;
-  overflow: hidden;
-}
-.video-container video {
-  width: 100%;
-  height: auto;
-  margin-top: -120px;
-  display: block;
-}
-
-.full-video-container {
-  width: 600px;
-  height: auto;
-  overflow: visible;
-}
-.full-video-container video {
-  width: 100%;
-  height: auto;
-  margin-top: 0;
-  display: block;
-}
+.video-container, .full-video-container { overflow: hidden; }
+.video-container video, .full-video-container video { width: 100%; height: auto; display: block; }
 
 /* Slideshow */
 .slideshow-container {
   width: 400px;
-  height: 300px; /* Fixed height to prevent caption jumping */
+  height: 300px;
   position: relative;
   border: 1px solid white;
   display: flex;
@@ -102,52 +59,87 @@ a:active {
   justify-content: center;
   overflow: hidden;
 }
-
 .slideshow-container img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Ensures image fits without changing container height */
+  object-fit: contain;
   position: absolute;
   top: 0;
   left: 0;
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
+.slideshow-container img.active { opacity: 1; }
 
-.slideshow-container img.active {
-  opacity: 1;
+/* Caption */
+.caption { text-align: center; margin-top: 5px; font-size: 16px; font-weight: bold; }
+
+/* Hamburger button */
+.menu-toggle {
+  display: none;
+  background-color: #800000;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  z-index: 1001;
+  position: fixed;
+  top: 0;
 }
 
-.caption {
-  text-align: center;
-  margin-top: 5px; /* Fixed margin so it doesn't jump */
-  font-size: 16px;
-  font-weight: bold;
+/* Overlay */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 900;
 }
 
-/* Responsive for smaller screens */
-@media (max-width: 900px) {
-  body {
-    padding-right: 20px;
+/* Mobile layout */
+@media (max-width: 768px) {
+  body { padding-right: 20px; }
+  #tlayout { display: block; }
+  #layout-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100%;
+    background: white;
+    border-right: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+    transform: translateX(-110%);
+    transition: transform 0.28s ease;
+    z-index: 1000;
+    overflow-y: auto;
   }
-  .media-row, .uncertainty-section {
-    flex-direction: column;
-    align-items: center;
-  }
-  .slideshow-container {
-    width: 90%;
-    height: auto;
-  }
+  #layout-menu.open { transform: translateX(0); }
+  #layout-content { width: 100%; padding: 15px; padding-right: 0; margin-top: 50px; }
+  .menu-toggle { display: block; }
+  .overlay.show { display: block; }
+  .media-row, .uncertainty-section { flex-direction: column; align-items: center; }
+  .slideshow-container, .video-container, .full-video-container { width: 90%; height: auto; }
 }
 </style>
 </head>
-
 <body>
+
+<!-- Mobile Hamburger Button -->
+<button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="layout-menu" onclick="toggleMenu()">☰ Gaurav Tiwari</button>
+
+<!-- Overlay -->
+<div class="overlay" id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
+
 <table summary="Table for page layout." id="tlayout">
 <tr valign="top">
 
 <!-- Left menu -->
-<td id="layout-menu" style="border-right: 1px solid white; padding-right:40px;">
+<td id="layout-menu" tabindex="-1" style="border-right: 1px solid white; padding-right:40px;">
   <div class="menu-item" style="margin-bottom: 10px;"><a href="index.html" class="current">Home</a></div>
   <div class="menu-item" style="margin-bottom: 10px;"><a href="experience.html">Current Research Interests and Ongoing Work</a></div>
   <div class="menu-item" style="margin-bottom: 10px;"><a href="teaching.html">Teaching&nbsp;Area</a></div>
@@ -160,20 +152,12 @@ a:active {
   <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 10px">
   <div class="office-info">
     <h2>Office</h2>
-    <p>
-      National Aerosol Facility, Room-803, 
-      IIT Kanpur, Kanpur 208016
-    </p>
+    <p>National Aerosol Facility, Room-803, IIT Kanpur, Kanpur 208016</p>
     <p><strong>Office Phone</strong><br>(O): 0512-259-2060</p>
     <p><strong>Email:</strong> gauravt[AT]iitk.ac.in</p>
-
-    <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3570.139229805877!2d80.22805107488131!3d26.515646277042663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c36fdb92b505d%3A0x778cffad0048de8c!2sNational%20Aerosol%20Facility%20(Aerosol%20Building)!5e0!3m2!1sen!2sin!4v1751483317534!5m2!1sen!2sin" 
-      width="100%" height="300" style="border:0; margin-top:10px;" allowfullscreen="" loading="lazy"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3570.139229805877!2d80.22805107488131!3d26.515646277042663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c36fdb92b505d%3A0x778cffad0048de8c!2sNational%20Aerosol%20Facility%20(Aerosol%20Building)!5e0!3m2!1sen!2sin!4v1751483317534!5m2!1sen!2sin" width="100%" height="300" style="border:0; margin-top:10px;" allowfullscreen="" loading="lazy"></iframe>
   </div>
-          <p>
-            <b>Created by Sameer Lawankar</b>
-          </p>
+  <p><b>Created by Sameer Lawankar</b></p>
 </td>
 
 <!-- Main content -->
@@ -201,32 +185,33 @@ a:active {
 </div>
 
 <!-- Photos Section -->
-<div class="uncertainty-section" style="display: flex; align-items: flex-start; gap: 30px; flex-wrap: wrap; justify-content: center;">
+<div class="uncertainty-section" style="display: flex; align-items: flex-start; justify-content: center; gap: 30px; flex-wrap: wrap;">
 
   <!-- Left: _S Photos -->
-  <div style="flex: 1; text-align: center; min-width: 250px;">
-    <div class="slideshow-container">
-      <img src="1_S.png" class="active">
-      <img src="2_S.png">
-      <img src="3_S.png">
-      <img src="4_S.png">
-      <img src="5_S.png">
+  <div style="flex: 0 0 45%; text-align: center;">
+    <div class="slideshow-container" style="width: 450px; height: 300px; margin: 0 auto;">
+      <img src="1_S.png" class="active" style="width: 100%; height: 100%; object-fit: contain;">
+      <img src="2_S.png" style="width: 100%; height: 100%; object-fit: contain;">
+      <img src="3_S.png" style="width: 100%; height: 100%; object-fit: contain;">
+      <img src="4_S.png" style="width: 100%; height: 100%; object-fit: contain;">
+      <img src="5_S.png" style="width: 100%; height: 100%; object-fit: contain;">
     </div>
   </div>
 
   <!-- Right: _Akshay Photos -->
-  <div style="flex: 1; text-align: center; min-width: 250px;">
-    <div class="slideshow-container">
-      <img src="1_Akshay.jpg" class="active">
-      <img src="2_Akshay.jpg">
-      <img src="3_Akshay.jpg">
-      <img src="4_Akshay.jpg">
-      <img src="5_Akshay.jpg">
-      <img src="6_Akshay.jpg">
+  <div style="flex: 0 0 45%; text-align: center;">
+    <div class="slideshow-container" style="width: 450px; height: 300px; margin: 0 auto;">
+      <img src="1_Akshay.jpg" class="active" style="width: 100%; height: 100%; object-fit: contain;">
+      <img src="2_Akshay.jpg" style="width: 100%; height: 100%; object-fit: contain;">
+      <img src="3_Akshay.jpg" style="width: 100%; height: 100%; object-fit: contain;">
+      <img src="4_Akshay.jpg" style="width: 100%; height: 100%; object-fit: contain;">
+      <img src="5_Akshay.jpg" style="width: 100%; height: 100%; object-fit: contain;">
+      <img src="6_Akshay.jpg" style="width: 100%; height: 100%; object-fit: contain;">
     </div>
-      </div>
+  </div>
 
 </div>
+
 
 <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 10px;">
 <h2><u>Assessment of Dynamic Response of Rocks</u></h2>
@@ -236,34 +221,31 @@ a:active {
   <p>
     Rocks are often subjected to high loading rates in the field due to processes such as blasting and excavation. Understanding their behavior under dynamic conditions is therefore crucial. Our research focuses on investigating the mechanical response and progressive fracturing of intact, jointed and grouted rocks under such conditions using Split Hopkinson Pressure Bar (SHPB) testing coupled with high-speed imaging and Digital Image Correlation (DIC). We further employ numerical modeling to simulate these experiments and analyze the underlying grain-scale mechanisms.
   </p>
-</div>
-
 <!-- Video + Slideshow Section -->
-<div class="uncertainty-section" style="display: flex; align-items: flex-start; gap: 30px; flex-wrap: wrap; justify-content: center;">
+<div class="uncertainty-section" style="display: flex; align-items: flex-start; justify-content: center; gap: 30px; flex-wrap: wrap;">
 
   <!-- Left: Experimental Video -->
-  <div style="flex: 1; text-align: center; min-width: 250px;">
-    <div class="full-video-container">
-      <video autoplay muted loop style="display: block; margin: 0 auto; width: 80%; height: auto;">
+  <div style="flex: 0 0 45%; text-align: center;">
+    <div class="full-video-container" style="width: 450px; height: 300px; margin: 0 auto;;">
+      <video autoplay muted loop style="display: block; width: 100%; height: auto;">
         <source src="Experimental.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
-    
   </div>
 
-  <!-- Right: Slideshow Images -->
-  <div style="flex: 1; text-align: center; min-width: 250px;">
-  <div class="slideshow-container" style="width: 300px; height: 200px; margin: 0 auto;">
-      <img src="1_A.jpg" class="active">
-      <img src="2_A.jpg">
-      <img src="3_A.jpg">
-      <img src="4_A.jpg">
+  <div style="flex: 0 0 45%; text-align: center;">
+    <div class="slideshow-container" style="width: 450px; height: 300px; margin: 0 auto;">
+      <img src="1_A.jpg" class="active" style="width: 100%; height: 100%; object-fit: contain;">
+      <img src="2_A.jpg" style="width: 100%; height: 100%; object-fit: contain;">
+      <img src="3_A.jpg" style="width: 100%; height: 100%; object-fit: contain;">
+      <img src="4_A.jpg" style="width: 100%; height: 100%; object-fit: contain;">
     </div>
-    
   </div>
+
 
 </div>
+
 
 <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 10px;">
 <h2><u>Grain-Scale Modelling of Rocks</u></h2>
@@ -276,27 +258,28 @@ a:active {
 </div>
 
 <!-- Slideshow + Video Section -->
-<div class="uncertainty-section" style="display: flex; align-items: flex-start; gap: 30px; flex-wrap: wrap; justify-content: center;">
+<div class="uncertainty-section" style="display: flex; align-items: flex-start; justify-content: center; gap: 30px; flex-wrap: wrap;">
 
   <!-- Left: Slideshow Images (Smaller) -->
-  <div style="flex: 1; text-align: center; min-width: 250px;">
-    <div class="slideshow-container" style="width: 300px; height: 200px; margin: 0 auto;">
+  <div style="flex: 0 0 45%; text-align: center;">
+    <div class="slideshow-container" style="width: 450px; height: 300px; margin: 0 auto;">
       <img src="1_Sameer.png" class="active" style="width: 100%; height: 100%; object-fit: contain;">
       <img src="2_Sameer.png" style="width: 100%; height: 100%; object-fit: contain;">
     </div>
-      </div>
+  </div>
 
   <!-- Right: Video -->
-  <div style="flex: 1; text-align: center; min-width: 250px;">
-    <div style="overflow: hidden; height: 100px; width: 300px; margin: 0 auto;">
-      <video autoplay muted loop style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center;">
+  <div style="flex: 0 0 45%; text-align: center;">
+  <div style="width: 300px; height: 50px; margin: 0 auto; overflow: hidden; padding-top: 150px;">
+      <video autoplay muted loop style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
         <source src="SHPB_Video.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
-      </div>
+  </div>
 
 </div>
+
 
 <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 10px;">
 <h2><u>THMC-Coupled Modelling of Rocks</u></h2>
@@ -312,7 +295,7 @@ a:active {
 
   <!-- Left: Slideshow Images (Smaller) -->
   <div style="flex: 1; text-align: center; min-width: 250px;">
-    <div class="slideshow-container" style="width: 300px; height: 200px; margin: 0 auto;">
+    <div class="slideshow-container" style="width: 450px; height: 300px; margin: 0 auto;">
       <img src="1_Yatharth.png" class="active" style="width: 100%; height: 100%; object-fit: contain;">
       <img src="2_Yatharth.png" style="width: 100%; height: 100%; object-fit: contain;">
     </div>
@@ -320,7 +303,7 @@ a:active {
 
   <!-- Right: Visualization (GIF/Image) -->
   <div style="flex: 1; text-align: center; min-width: 250px;">
-    <div style="width: 300px; height: 200px; margin: 0 auto; overflow: hidden;">
+    <div style="width: 450px; height: 300px; margin: 0 auto; overflow: hidden;">
       <img src="Yatharth_Video.gif" alt="Numerical Simulation Visualization" style="width: 100%; height: 100%; object-fit: contain; display: block;">
     </div>
       </div>
@@ -331,7 +314,9 @@ a:active {
 </tr>
 </table>
 
+
 <script>
+// Slideshow logic
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.slideshow-container').forEach(container => {
     const imgs = container.querySelectorAll('img');
@@ -346,9 +331,37 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// Hamburger menu logic
+function toggleMenu() {
+  const menu = document.getElementById('layout-menu');
+  const overlay = document.getElementById('overlay');
+  const toggleBtn = document.getElementById('menuToggle');
+  const isOpen = menu.classList.toggle('open');
+  overlay.classList.toggle('show', isOpen);
+  toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  overlay.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+  if (isOpen) menu.focus(); else toggleBtn.focus();
+}
+
+function closeMenu() {
+  const menu = document.getElementById('layout-menu');
+  const overlay = document.getElementById('overlay');
+  const toggleBtn = document.getElementById('menuToggle');
+  menu.classList.remove('open');
+  overlay.classList.remove('show');
+  toggleBtn.setAttribute('aria-expanded', 'false');
+  overlay.setAttribute('aria-hidden', 'true');
+  toggleBtn.focus();
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const menu = document.getElementById('layout-menu');
+    if (menu.classList.contains('open')) closeMenu();
+  }
+});
 </script>
 
 </body>
 </html>
-
-
