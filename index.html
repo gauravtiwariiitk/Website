@@ -9,7 +9,7 @@
 body {
   font-family: "Courier New", Courier, monospace;
   text-align: justify;
-  padding-right: 100px;
+  padding-right: 0px;
   margin: 0;
 }
 
@@ -30,6 +30,8 @@ td { vertical-align: top; }
   border-right: 1px solid white;
   background: white;
   font-size: 16px;
+  width: 20%;
+text-align: left;
 }
 
 .menu-item { margin-bottom: 10px; }
@@ -72,7 +74,7 @@ img { max-width: 100%; height: auto; display: block; margin: 20px auto; }
     position: fixed;
     top: 0;
     left: 0;
-    width: 260px;
+    width: 300px;
     height: 100%;
     background: white;
     border-right: 1px solid #ccc;
@@ -87,9 +89,8 @@ img { max-width: 100%; height: auto; display: block; margin: 20px auto; }
   #layout-menu.open { transform: translateX(0); }
 
   #layout-content {
-    padding: 15px;
+    padding: 20px;
     width: 100%;
-    padding-right: 0;
   }
 
   .overlay.show { display: block; }
@@ -146,11 +147,11 @@ img { max-width: 100%; height: auto; display: block; margin: 20px auto; }
 <tr valign="top">
 
 <!-- Sidebar -->
-<td id="layout-menu" tabindex="-1">
+<td id="layout-menu" tabindex="-1" style="border-right: 1px solid white; padding-right:40px;">
   <div class="menu-item"><a href="index.html" class="current">Home</a></div>
   <div class="menu-item"><a href="experience.html">Current Research Interests and Ongoing Work</a></div>
   <div class="menu-item"><a href="teaching.html">Teaching&nbsp;Area</a></div>
-  <div class="menu-item"><a href="publications.html">Publications</a></div>
+  <div class="menu-item"><a href="publications.html">Research Profile and Publication Details</a></div>
   <div class="menu-item"><a href="students.html">Student Guidance</a></div>
   <div class="menu-item"><a href="awards.html">Awards&nbsp;and&nbsp;Recognitions</a></div>
   <div class="menu-item"><a href="srp.html">Sponsored&nbsp;Research&nbsp;Projects</a></div>
@@ -161,7 +162,7 @@ img { max-width: 100%; height: auto; display: block; margin: 20px auto; }
   <!-- Office Info -->
   <div class="office-info">
     <h2>Office</h2>
-    <p>National Aerosol Facility, Room-803,<br> IIT Kanpur,<br>Kanpur 208016</p>
+    <p>National Aerosol Facility, Room-803, IIT Kanpur,Kanpur 208016</p>
     <p><strong>Office Phone</strong><br>(O): 0512-259-2060</p>
     <p><strong>Email:</strong> gauravt[AT]iitk.ac.in</p>
 
@@ -219,10 +220,6 @@ Probabilistic Grain Scale Modelling
 <!-- Sliding Attention Line -->
 <div class="sliding-bottom">
   <div class="sliding-text">Looking for Prospective Post-Doctoral and PhD Candidates – Positions Open! Contact Us.</div>
-</div>
-
-<div style="position: fixed; bottom: 45px; right: -200px; transform: rotate(-90deg); transform-origin: left bottom; font-size: 12px; color: #555; background: transparent; padding: 5px; white-space: nowrap; font-weight: bold;">
-  Created by Sameer Lawankar
 </div>
 
 <script>
