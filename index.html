@@ -82,44 +82,6 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-100%); }
     }
-
-   /* Responsive font size for mobile devices */
-@media (max-width: 768px) {
-  body {
-    font-size: 14px; /* smaller text on tablets and phones */
-    padding-right: 20px; /* less padding for small screens */
-  }
-
-  #layout-menu {
-    font-size: 14px;
-    padding-right: 10px;
-  }
-
-  h1 {
-    font-size: 20px;
-  }
-
-  h2 {
-    font-size: 16px;
-  }
-
-  /* Make table layout stack vertically on very small screens */
-  #tlayout {
-    display: block;
-  }
-
-  #tlayout td {
-    display: block;
-    width: 100%;
-  }
-
-  /* Make image responsive */
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-}
- 
   </style>
 </head>
 <body>
@@ -129,7 +91,7 @@
         <div class="menu-item" style="margin-bottom: 10px;"><a href="index.html" class="current">Home</a></div>
         <div class="menu-item" style="margin-bottom: 10px;"><a href="experience.html">Current Research Interests and Ongoing Work</a></div>
         <div class="menu-item" style="margin-bottom: 10px;"><a href="teaching.html">Teaching&nbsp;Area</a></div>
-        <div class="menu-item" style="margin-bottom: 8px;"><a href="publications.html">Research Profile and Publication Details</a></div>
+        <div class="menu-item" style="margin-bottom: 8px;"><a href="publications.html">Publications</a></div>
         <div class="menu-item" style="margin-bottom: 10px;"><a href="students.html">Student Guidance</a></div>
         <div class="menu-item" style="margin-bottom: 10px;"><a href="awards.html">Awards&nbsp;and&nbsp;Recognitions</a></div>
         <div class="menu-item" style="margin-bottom: 10px;"><a href="srp.html">Sponsored&nbsp;Research&nbsp;Projects</a></div>
@@ -140,8 +102,9 @@
         <div class="office-info">
           <h2>Office</h2>
           <p>
-            National Aerosol Facility, Room-803, 
-            IIT Kanpur, Kanpur 208016
+            National Aerosol Facility, Room-803<br>
+            IIT Kanpur,<br>
+            Kanpur 208016
           </p>
 
           <p>
@@ -156,34 +119,34 @@
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3570.139229805877!2d80.22805107488131!3d26.515646277042663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c36fdb92b505d%3A0x778cffad0048de8c!2sNational%20Aerosol%20Facility%20(Aerosol%20Building)!5e0!3m2!1sen!2sin!4v1751483317534!5m2!1sen!2sin" 
             width="100%" height="300" style="border:0; margin-top:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <p>
-           <b>Created by Sameer Lawankar</b>
-          </p>
         </div>
 
-                </td>
+          <p>
+            Created by Sameer Lawankar
+          </p>
+      </td>
 
       <td id="layout-content" style="position: relative;">
-        <table>
-          <tr>
-            <td>
-              <img src="Gaurav.png" alt="Profile Photo" width="400">
-            </td>
-            <td style="padding-left: 15px; vertical-align: top;">
-              <h1><strong>Gaurav Tiwari</strong><br></h1>
-              <h2>Associate Professor<br></h2>
-              Hi! I am an Associate Professor in the 
-              <a href="https://www.iitk.ac.in/ce/" target="_blank" style="text-decoration: none; color: blue;">
-              Department of Civil Engineering
-              </a> at
-              <a href="https://www.iitk.ac.in" target="_blank" style="text-decoration: none; color: blue;">
-                Indian Institute of Technology, Kanpur
-              </a> 
-              where I lead the Engineering Rock Mechanics Lab. My research focuses on <b>experimental, numerical and uncertainty analyses of rock materials and structures, with emphasis on dynamic behavior, fracture processes, and stability of rock excavations</b>. <p>In addition to research, I am deeply involved in <b>teaching courses on Rock Mechanics, Soil Mechanics,  Foundation Analysis, Mechanics of Solids and Risk and Reliability in Geotechnical Engineering</b>, and I actively mentor undergraduate, postgraduate, and doctoral students. I strive to create a <b>research-oriented and conceptually strong learning environment</b>, integrating laboratory-based insights and computational approaches into classroom teaching.
-            </td>
-          </tr>
-        </table>
 
+<div id="layout-content" style="position: relative; max-width: 900px; margin: auto;">
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-start;">
+    <div style="flex: 1 1 300px; text-align: center;">
+      <img src="Gaurav.png" alt="Profile Photo" style="width: 100%; height: auto; max-width: 400px;">
+    </div>
+    <div style="flex: 2 1 400px; padding-left: 15px;">
+      <h1><strong>Gaurav Tiwari</strong></h1>
+      <h2>Associate Professor</h2>
+      Hi! I am an Associate Professor in the 
+      <a href="https://www.iitk.ac.in/ce/" target="_blank" style="text-decoration: none; color: blue;">Department of Civil Engineering</a>
+      at
+      <a href="https://www.iitk.ac.in" target="_blank" style="text-decoration: none; color: blue;">Indian Institute of Technology, Kanpur</a>,
+      where I lead the Engineering Rock Mechanics Lab.
+      <p>My research focuses on <b>experimental, numerical and uncertainty analyses of rock materials and structures, with emphasis on dynamic behavior, fracture processes, and stability of rock excavations</b>. <p>In addition to research, I am deeply involved in <b>teaching courses on Rock Mechanics, Soil Mechanics,  Foundation Analysis, Mechanics of Solids and Risk and Reliability in Geotechnical Engineering</b>, and I actively mentor undergraduate, postgraduate, and doctoral students. I strive to create a <b>research-oriented and conceptually strong learning environment</b>, integrating laboratory-based insights and computational approaches into classroom teaching.
+</p>
+    </div>
+  </div>
+</div>
+     
         <h2>Biography</h2>
         <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 20px">
         <p>
@@ -222,27 +185,21 @@
   <div class="sliding-bottom">
     <div class="sliding-text">Looking for Prospective Post-Doctoral and PhD Candidates – Positions Open! Contact Us.</div>
   </div>
-
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S71F3L89J7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-S71F3L89J7');
-</script>
-
-
+<div style="
+    position: fixed;
+    bottom: 45px;
+    right: -200px; /* adjust to move it into view */
+    transform: rotate(-90deg);
+    transform-origin: left bottom; /* pivot so rotated text is visible */
+    font-size: 12px;
+    color: #555;
+    background: transparent;
+    padding: 5px;
+    white-space: nowrap;
+    font-weight: bold;
+">
+  Created by Sameer Lawankar
+</div>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
