@@ -35,13 +35,16 @@
   td { vertical-align: top; }
 
   /* Sidebar base */
-  #layout-menu {
-    padding-right: 40px;
-    border-right: 1px solid white;
-    background: white;
-  }
+#layout-menu {
+  padding-right: 40px;
+  border-right: 1px solid white;
+  background: white;
+  font-size: 16px;
+  width: 20%;
+  text-align: left;
+}
 
-  .menu-item { margin-bottom: 10px; }
+  .menu-item { margin-bottom: 3px; }
 
   .office-info h2 { margin: 8px 0; }
   iframe { max-width: 100%; }
@@ -107,7 +110,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 260px;
+      width: 300px;
       height: 100%;
       background: white;
       border-right: 1px solid #ccc;
@@ -124,7 +127,7 @@
     }
 
     #layout-content {
-      padding: 15px;
+      padding: 20px;
       width: 100%;
     }
 
@@ -186,7 +189,7 @@
   <div class="office-info">
     <h2>Office</h2>
     <p>
-      National Aerosol Facility, Room-803,<br>
+      National Aerosol Facility, Room-803,
       IIT Kanpur, Kanpur 208016
     </p>
 
@@ -263,23 +266,6 @@
 </td>
 </tr>
 </table>
-
-<!-- Rotated Footer Note -->
-<div style="
-  position: fixed;
-  bottom: 45px;
-  right: -200px;
-  transform: rotate(-90deg);
-  transform-origin: left bottom;
-  font-size: 12px;
-  color: #555;
-  background: transparent;
-  padding: 5px;
-  white-space: nowrap;
-  font-weight: bold;
-">
-  Created by Sameer Lawankar
-</div>
 
 <script>
   function toggleMenu() {
