@@ -1,108 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gaurav Tiwari - IIT Kanpur</title>
+
 <style>
 body {
-      font-family: "Courier New";
-      text-align: justify;
-      padding-right: 100px; /* Adds spacing inside the content area on the right */
-    }
-  h1 {
-    margin-top: 5px; /* Reduce space below h1 */
-    margin-bottom: 5px; /* Reduce space below h1 */
-  }
-
-  h2 {
-    margin-top: 5px; /* Reduce space above h2 */
-    margin-bottom: 5px; /* Reduce space above h2 */
-  }
-#layout-menu .menu-item a {
-  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  text-align: justify;
+  padding-right: 100px;
+  margin: 0;
 }
 
+h1, h2 { margin: 5px 0; }
 
-  a:link,
-  a:visited {
-    color: blue;
-    text-decoration: none;
+#layout-menu .menu-item a { font-weight: bold; }
+
+a:link, a:visited { color: blue; text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:active { color: blue; }
+
+#tlayout { width: 100%; border-collapse: collapse; }
+td { vertical-align: top; }
+
+/* Sidebar */
+#layout-menu {
+  padding-right: 40px;
+  border-right: 1px solid white;
+  background: white;
+  font-size: 16px;
+}
+
+.menu-item { margin-bottom: 10px; }
+.office-info h2 { margin: 8px 0; }
+iframe { max-width: 100%; }
+
+/* Content */
+#layout-content { padding: 20px; }
+img { max-width: 100%; height: auto; display: block; margin: 20px auto; }
+
+/* Hamburger button */
+.menu-toggle {
+  display: none;
+  background-color: #800000;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+/* Overlay */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 900;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }
+
+  #tlayout { display: block; }
+
+  #layout-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100%;
+    background: white;
+    border-right: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+    transform: translateX(-110%);
+    transition: transform 0.28s ease;
+    z-index: 1000;
+    overflow-y: auto;
   }
 
-  a:hover {
-    text-decoration: underline;
+  #layout-menu.open { transform: translateX(0); }
+
+  #layout-content {
+    padding: 15px;
+    width: 100%;
+    padding-right: 0;
   }
 
-  a:active {
-    color: blue;
-  }
+  .overlay.show { display: block; }
+}
+
+/* Accessibility */
+.menu-toggle:focus,
+.menu-item a:focus { outline: 3px solid #ffd580; outline-offset: 2px; }
+
+/* Sliding text at the bottom */
+.sliding-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  color: blue;
+  font-weight: bold;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 10px 0;
+  z-index: 9999;
+}
+
+.sliding-text {
+  display: inline-block;
+  padding-left: 100%;
+  animation: slide-left 30s linear infinite;
+}
+
+.sliding-bottom:hover .sliding-text {
+  animation-play-state: paused;
+}
+
+@keyframes slide-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
 </style>
 </head>
+
 <body>
+
+<!-- Mobile Hamburger Button -->
+<button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="layout-menu" onclick="toggleMenu()">
+  ☰ Gaurav Tiwari
+</button>
+
+<!-- Overlay -->
+<div class="overlay" id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
+
 <table summary="Table for page layout." id="tlayout">
 <tr valign="top">
-<td id="layout-menu" style="border-right: 1px solid white; padding-right:40px;">
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="index.html" class="current">Home</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="experience.html">Current Research Interests and<br> Ongoing Work</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="teaching.html">Teaching&nbsp;Area</a></div>
-  <div class="menu-item" style="margin-bottom: 8px;"><a href="publications.html">Research Profile and Publication Details</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="students.html">Student Guidance</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="awards.html">Awards&nbsp;and&nbsp;Recognitions</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="srp.html">Sponsored&nbsp;Research&nbsp;Projects</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="research.html">Administrative&nbsp;Responsibilities</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="lab.html">Lab&nbsp;Facilities</a></div>
+
+<!-- Sidebar -->
+<td id="layout-menu" tabindex="-1">
+  <div class="menu-item"><a href="index.html" class="current">Home</a></div>
+  <div class="menu-item"><a href="experience.html">Current Research Interests and Ongoing Work</a></div>
+  <div class="menu-item"><a href="teaching.html">Teaching&nbsp;Area</a></div>
+  <div class="menu-item"><a href="publications.html">Publications</a></div>
+  <div class="menu-item"><a href="students.html">Student Guidance</a></div>
+  <div class="menu-item"><a href="awards.html">Awards&nbsp;and&nbsp;Recognitions</a></div>
+  <div class="menu-item"><a href="srp.html">Sponsored&nbsp;Research&nbsp;Projects</a></div>
+  <div class="menu-item"><a href="research.html">Administrative&nbsp;Responsibilities</a></div>
+  <div class="menu-item"><a href="lab.html">Lab&nbsp;Facilities</a></div>
   <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 10px">
 
-<!-- Office Info Below Menu -->
+  <!-- Office Info -->
   <div class="office-info">
     <h2>Office</h2>
-    <p>
-      National Aerosol Facility, Room-803,<br> 
-      IIT Kanpur, Kanpur 208016
-    </p>
-
-    <p>
-      <strong>Office Phone</strong><br>
-      (O): 0512-259-2060
-    </p>
-
-    <p>
-      <strong>Email:</strong> gauravt[AT]iitk.ac.in
-    </p>
+    <p>National Aerosol Facility, Room-803,<br> IIT Kanpur,<br>Kanpur 208016</p>
+    <p><strong>Office Phone</strong><br>(O): 0512-259-2060</p>
+    <p><strong>Email:</strong> gauravt[AT]iitk.ac.in</p>
 
     <iframe 
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3570.139229805877!2d80.22805107488131!3d26.515646277042663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c36fdb92b505d%3A0x778cffad0048de8c!2sNational%20Aerosol%20Facility%20(Aerosol%20Building)!5e0!3m2!1sen!2sin!4v1751483317534!5m2!1sen!2sin" 
-      width="100%" height="300" style="border:0; margin-top:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      width="100%" height="300" style="border:0; margin-top:10px;" allowfullscreen="" loading="lazy"></iframe>
 
-            <p>
-      <b>Created By Sameer Lawankar</b>
-    </p>
+    <p><b>Created by Sameer Lawankar</b></p>
   </div>
-
 </td>
+
+<!-- Main Content -->
 <td id="layout-content">
-<h2>Teaching Area</h2>
-<img src="Teaching_Area.png" alt="Research Photo" style="width:600px; height:auto; display:block; margin: 20px auto;">
+
+<div style="max-width: 900px; margin: auto;">
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-start;">
+    <div style="flex: 1 1 300px; text-align: center;">
+      <img src="Gaurav.png" alt="Profile Photo">
+    </div>
+    <div style="flex: 2 1 400px; padding-left: 15px;">
+      <h1>Gaurav Tiwari</h1>
+      <h2>Associate Professor</h2>
+      <p>Hi! I am an Associate Professor in the <a href="https://www.iitk.ac.in/ce/" target="_blank">Department of Civil Engineering</a> at <a href="https://www.iitk.ac.in" target="_blank">Indian Institute of Technology, Kanpur</a>, where I lead the Engineering Rock Mechanics Lab.</p>
+      <p>My research focuses on <b>experimental, numerical and uncertainty analyses of rock materials and structures, with emphasis on dynamic behavior, fracture processes, and stability of rock excavations</b>. In addition to research, I teach courses on <b>Rock Mechanics, Soil Mechanics, Foundation Analysis, Mechanics of Solids, and Risk and Reliability in Geotechnical Engineering</b> and actively mentor students.</p>
+    </div>
+  </div>
+</div>
+
+<h2>Biography</h2>
+<hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 20px">
+<p>I received my bachelor's degree from <a href="https://www.mbm.ac.in/" target="_blank">MBM Govt Eng. College Jodhpur</a> in 2011, M.Tech from <a href="https://www.iitr.ac.in/" target="_blank">IIT Roorkee</a> in 2013, and PhD from <a href="https://iisc.ac.in/" target="_blank">IISc Bengaluru</a> in 2018. Prior to IIT Kanpur, I was a Postdoctoral Research Associate at IISc. My research focuses on experimental rock mechanics, dynamic response of rocks, hybrid reliability methodologies, and THMC modelling for energy storage applications.</p>
+
 <ul>
-  <li><b>Mechanics of Solids (ESO202)</b> at IIT Kanpur (~180 students)(Tutor<sup>*</sup>;Instructor<sup>*</sup>)</li>
-  <li><b>Soil Mechanics (CE252)</b> at IIT Kanpur (~160 students)<sup>*</sup></li>
-  <li><b>Foundation Design (CE352A)</b> at IIT Kanpur (~150 students)<sup>***</sup></li>
-  <li><b>Civil Engineering Communication Skills (CE341A)</b> at IIT Kanpur (~150 students)<sup>#</sup></li>
-  <li><b>Civil Engineering Materials (CE242A)</b> at IIT Kanpur (~150 students)</li>
-  <li><b>Applications of Geotechnical Engineering (CE451)</b> at IIT Kanpur (~50 students)<sup>*</sup></li>
-  <li><b>Foundation Analysis and Design (CE632A)</b> at IIT Kanpur (~15 students)<sup>*</sup></li>
-  <li><b>Geotechnical Measurements and Exploration (CE638A)</b> at IIT Kanpur (~15 students)<sup>*</sup></li>
-  <li><b>Rock Mechanics (CE630A)</b> at IIT Kanpur (~120 students)<sup>****</sup></li>
-  <li><b>Risk and Reliability in Geotechnical Engineering (CE731A)</b> at IIT Kanpur (~30 students)<sup>*</sup></li>
-  <li><b>Basic Geomechanics (CE201)</b> at IISc Bangalore (As Teaching Assistant)</li>
+  <li><strong>Associate Professor</strong>, Department of Civil Engineering, IIT Kanpur (2024 – Present)</li>
+  <li><strong>Assistant Professor</strong>, Department of Civil Engineering, IIT Kanpur (2018 – 2024)</li>
+  <li><strong>Post-Doctoral Research Associate</strong>, IISc Bangalore (2018)</li>
 </ul>
 
+<h2>Research Interests</h2>
+<hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 20px">
 <p>
-  <sup>*</sup> Rated as excellent instructor (with score > 3.5 out of 4)<br>
-  <sup>#</sup> Course is not reviewed by IITK
+Geotechnical Engineering<br>
+Experimental Rock Mechanics<br>
+Probabilistic Rock Engineering<br>
+Numerical Modelling in Rock Engineering<br>
+AI/ML in Rock Engineering<br>
+Stochastic THMC Modelling<br>
+Probabilistic Grain Scale Modelling
 </p>
+
+</td>
+</tr>
 </table>
+
+<!-- Sliding Attention Line -->
+<div class="sliding-bottom">
+  <div class="sliding-text">Looking for Prospective Post-Doctoral and PhD Candidates – Positions Open! Contact Us.</div>
+</div>
+
+<div style="position: fixed; bottom: 45px; right: -200px; transform: rotate(-90deg); transform-origin: left bottom; font-size: 12px; color: #555; background: transparent; padding: 5px; white-space: nowrap; font-weight: bold;">
+  Created by Sameer Lawankar
+</div>
+
+<script>
+function toggleMenu() {
+  const menu = document.getElementById('layout-menu');
+  const overlay = document.getElementById('overlay');
+  const toggleBtn = document.getElementById('menuToggle');
+  const isOpen = menu.classList.toggle('open');
+  overlay.classList.toggle('show', isOpen);
+  toggleBtn?.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  overlay?.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+  if (isOpen) menu.focus();
+  else toggleBtn?.focus();
+}
+
+function closeMenu() {
+  const menu = document.getElementById('layout-menu');
+  const overlay = document.getElementById('overlay');
+  const toggleBtn = document.getElementById('menuToggle');
+  menu.classList.remove('open');
+  overlay.classList.remove('show');
+  toggleBtn?.setAttribute('aria-expanded', 'false');
+  overlay?.setAttribute('aria-hidden', 'true');
+  toggleBtn?.focus();
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const menu = document.getElementById('layout-menu');
+    if (menu.classList.contains('open')) closeMenu();
+  }
+});
+</script>
+
 </body>
 </html>
-
-
-
-
