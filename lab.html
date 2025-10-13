@@ -1,89 +1,211 @@
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gaurav Tiwari - IIT Kanpur</title>
+
 <style>
-body {
-      font-family: "Courier New", Courier, monospace;
-      text-align: justify;
-      padding-right: 0px; /* Adds spacing inside the content area on the right */
-    }
-#layout-menu .menu-item a {
-  font-weight: bold;
-}
-
-  h1 {
-    margin-top: 5px; /* Reduce space below h1 */
-    margin-bottom: 5px; /* Reduce space below h1 */
+  body {
+    font-family: "Courier New", Courier, monospace;
+    text-align: justify;
+    padding-right: 0px;
+    margin: 0;
+    color: #000;
+    line-height: 1.45;
   }
 
-  h2 {
-    margin-top: 5px; /* Reduce space above h2 */
-    margin-bottom: 5px; /* Reduce space above h2 */
+  #layout-menu .menu-item a {
+    font-weight: bold;
   }
 
-  a:link,
-  a:visited {
+  h1, h2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  a:link, a:visited {
     color: blue;
     text-decoration: none;
   }
+  a:hover { text-decoration: underline; }
+  a:active { color: blue; }
 
-  a:hover {
-    text-decoration: underline;
+  #tlayout { width: 100%; border-collapse: collapse; }
+  td { vertical-align: top; }
+
+  /* Sidebar base */
+  #layout-menu {
+    padding-right: 40px;
+    border-right: 1px solid white;
+    background: white;
   }
 
-  a:active {
-    color: blue;
+  .menu-item { margin-bottom: 10px; }
+
+  .office-info h2 { margin: 8px 0; }
+  iframe { max-width: 100%; }
+
+  /* Content area */
+  #layout-content {
+    padding: 20px;
+  }
+
+  /* Slideshow */
+  .slideshow-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 300px;
+  }
+
+  .slideshow-track {
+    display: flex;
+    width: calc(100% * 6);
+    animation: scroll 30s linear infinite;
+  }
+
+  .slideshow-track img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(10%); }
+    100% { transform: translateX(-53%); }
+  }
+
+  /* Mobile Hamburger Button */
+  .menu-toggle {
+    display: none;
+    background-color: #800000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* Overlay */
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 900;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle { display: block; }
+
+    #tlayout { display: block; }
+
+    #layout-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 260px;
+      height: 100%;
+      background: white;
+      border-right: 1px solid #ccc;
+      padding: 20px;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+      transform: translateX(-110%);
+      transition: transform 0.28s ease;
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    #layout-menu.open {
+      transform: translateX(0);
+    }
+
+    #layout-content {
+      padding: 15px;
+      width: 100%;
+    }
+
+    .overlay.show {
+      display: block;
+    }
+
+    /* Stack content vertically on mobile */
+    #layout-content table {
+      display: block;
+    }
+
+    #layout-content td {
+      display: block;
+      width: 100% !important;
+      padding-right: 0 !important;
+    }
+
+    .slideshow-container {
+      height: 200px;
+      margin-top: 20px;
+    }
+  }
+
+  /* Accessibility focus styles */
+  .menu-toggle:focus,
+  .menu-item a:focus {
+    outline: 3px solid #ffd580;
+    outline-offset: 2px;
   }
 </style>
 </head>
+
 <body>
+
+<!-- Mobile Navigation Button -->
+<button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="layout-menu" onclick="toggleMenu()">
+  ☰ Gaurav Tiwari
+</button>
+
+<!-- Overlay -->
+<div class="overlay" id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
+
 <table summary="Table for page layout." id="tlayout">
 <tr valign="top">
-<td id="layout-menu" style="border-right: 1px solid white; padding-right:40px;">
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="index.html" class="current">Home</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="experience.html">Current Research Interests and Ongoing Work</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="teaching.html">Teaching&nbsp;Area</a></div>
-  <div class="menu-item" style="margin-bottom: 8px;"><a href="publications.html">Research Profile and Publication Details</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="students.html">Student Guidance</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="awards.html">Awards&nbsp;and&nbsp;Recognitions</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="srp.html">Sponsored&nbsp;Research&nbsp;Projects</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="research.html">Administrative&nbsp;Responsibilities</a></div>
-  <div class="menu-item" style="margin-bottom: 10px;"><a href="lab.html">Lab&nbsp;Facilities</a></div>
+<td id="layout-menu">
+  <div class="menu-item"><a href="index.html" class="current">Home</a></div>
+  <div class="menu-item"><a href="experience.html">Current Research Interests and Ongoing Work</a></div>
+  <div class="menu-item"><a href="teaching.html">Teaching&nbsp;Area</a></div>
+  <div class="menu-item"><a href="publications.html">Research Profile and Publication Details</a></div>
+  <div class="menu-item"><a href="students.html">Student Guidance</a></div>
+  <div class="menu-item"><a href="awards.html">Awards&nbsp;and&nbsp;Recognitions</a></div>
+  <div class="menu-item"><a href="srp.html">Sponsored&nbsp;Research&nbsp;Projects</a></div>
+  <div class="menu-item"><a href="research.html">Administrative&nbsp;Responsibilities</a></div>
+  <div class="menu-item"><a href="lab.html">Lab&nbsp;Facilities</a></div>
   <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 10px">
 
-<!-- Office Info Below Menu -->
+  <!-- Office Info -->
   <div class="office-info">
     <h2>Office</h2>
     <p>
-      National Aerosol Facility, Room-803, 
+      National Aerosol Facility, Room-803,<br>
       IIT Kanpur, Kanpur 208016
     </p>
 
-    <p>
-      <strong>Office Phone</strong><br>
-      (O): 0512-259-2060
-    </p>
+    <p><strong>Office Phone</strong><br>(O): 0512-259-2060</p>
 
-    <p>
-      <strong>Email:</strong> gauravt[AT]iitk.ac.in
-    </p>
+    <p><strong>Email:</strong> gauravt[AT]iitk.ac.in</p>
 
     <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3570.139229805877!2d80.22805107488131!3d26.515646277042663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c36fdb92b505d%3A0x778cffad0048de8c!2sNational%20Aerosol%20Facility%20(Aerosol%20Building)!5e0!3m2!1sen!2sin!4v1751483317534!5m2!1sen!2sin" 
-      width="100%" height="300" style="border:0; margin-top:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <p>
-      <b>Created By Sameer Lawankar</b>
-    </p>
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3570.139229805877!2d80.22805107488131!3d26.515646277042663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c36fdb92b505d%3A0x778cffad0048de8c!2sNational%20Aerosol%20Facility%20(Aerosol%20Building)!5e0!3m2!1sen!2sin!4v1751483317534!5m2!1sen!2sin"
+      width="100%" height="300" style="border:0; margin-top:10px;" allowfullscreen="" loading="lazy"></iframe>
+
+    <p><b>Created By Sameer Lawankar</b></p>
   </div>
 </td>
+
 <td id="layout-content">
-  
   <table style="width: 100%;">
     <tr valign="top">
-      <!-- Left Side: Text -->
       <td style="width: 60%; padding-right: 20px;">
-        <!-- Your facilities content remains the same -->
         <h2>Facilities</h2>
 
         <h2>Computational Facilities</h2>
@@ -91,8 +213,7 @@ body {
           <li>FLAC-2D (Itasca)</li>
           <li>FLAC-3D (Itasca)</li>
           <li>UDEC (Itasca)</li>
-          <li>
-            Rocscience Academic bundle:
+          <li>Rocscience Academic bundle:
             <ul>
               <li>RocPlane</li>
               <li>RocTopple</li>
@@ -124,50 +245,75 @@ body {
         </ul>
       </td>
 
-      <!-- Right Side: Infinite Slideshow -->
+      <!-- Slideshow -->
       <td style="width: 40%;">
-        <div class="slideshow-container" style="width: 100%; overflow: hidden; position: relative; height: 300px;">
-          <div class="slideshow-track" style="display: flex; width: calc(100% * 6); animation: scroll 30s linear infinite;">
-            <!-- Original 3 images -->
-            <img src="https://itasca-int.objects.frb.io/assets/img/site/ICG22-LGO-FLAC2D-BLU.png" alt="Slide 1" style="width: 100%; height: 300px; object-fit: cover;">
-            <img src="https://i0.wp.com/itascasoftware.com/wp-content/uploads/2024/10/ITASCA-Software-UDEC-Logo.png?w=1334&ssl=1" alt="Slide 2" style="width: 100%; height: 300px; object-	    fit: cover;">
-            <img src="https://www.ta.com/system/uploads/fae/image/asset/4036/xl_Rocscience_DETAIL.jpg" alt="Slide 3" style="width: 100%; height: 300px; object-fit: cover;">
-            <!-- Repeat same 3 images -->
-            <img src="https://itasca-int.objects.frb.io/assets/img/site/ICG22-LGO-FLAC2D-BLU.png" alt="Slide 1" style="width: 100%; height: 300px; object-fit: cover;">
-            <img src="https://i0.wp.com/itascasoftware.com/wp-content/uploads/2024/10/ITASCA-Software-UDEC-Logo.png?w=1334&ssl=1" alt="Slide 2" style="width: 100%; height: 300px; object-                        	    fit: cover;">
-            <img src="https://www.ta.com/system/uploads/fae/image/asset/4036/xl_Rocscience_DETAIL.jpg" alt="Slide 3" style="width: 100%; height: 300px; object-fit: cover;">
+        <div class="slideshow-container">
+          <div class="slideshow-track">
+            <img src="https://itasca-int.objects.frb.io/assets/img/site/ICG22-LGO-FLAC2D-BLU.png" alt="Slide 1">
+            <img src="https://i0.wp.com/itascasoftware.com/wp-content/uploads/2024/10/ITASCA-Software-UDEC-Logo.png?w=1334&ssl=1" alt="Slide 2">
+            <img src="https://www.ta.com/system/uploads/fae/image/asset/4036/xl_Rocscience_DETAIL.jpg" alt="Slide 3">
+            <img src="https://itasca-int.objects.frb.io/assets/img/site/ICG22-LGO-FLAC2D-BLU.png" alt="Slide 1">
+            <img src="https://i0.wp.com/itascasoftware.com/wp-content/uploads/2024/10/ITASCA-Software-UDEC-Logo.png?w=1334&ssl=1" alt="Slide 2">
+            <img src="https://www.ta.com/system/uploads/fae/image/asset/4036/xl_Rocscience_DETAIL.jpg" alt="Slide 3">
           </div>
         </div>
-
-        <style>
-          .slideshow-track {
-            animation: scroll 30s linear infinite;
-          }
-
-          @keyframes scroll {
-            0%   { transform: translateX(10%); }
-            100% { transform: translateX(-53%); } /* Only scroll halfway to loop perfectly */
-          }
-        </style>
       </td>
     </tr>
   </table>
 </td>
+</tr>
+</table>
 
+<!-- Rotated Footer Note -->
 <div style="
-    position: fixed;
-    bottom: 45px;
-    right: -200px; /* adjust to move it into view */
-    transform: rotate(-90deg);
-    transform-origin: left bottom; /* pivot so rotated text is visible */
-    font-size: 12px;
-    color: #555;
-    background: transparent;
-    padding: 5px;
-    white-space: nowrap;
-    font-weight: bold;
+  position: fixed;
+  bottom: 45px;
+  right: -200px;
+  transform: rotate(-90deg);
+  transform-origin: left bottom;
+  font-size: 12px;
+  color: #555;
+  background: transparent;
+  padding: 5px;
+  white-space: nowrap;
+  font-weight: bold;
 ">
   Created by Sameer Lawankar
 </div>
 
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('layout-menu');
+    const overlay = document.getElementById('overlay');
+    const toggleBtn = document.getElementById('menuToggle');
+    const isOpen = menu.classList.toggle('open');
+    overlay.classList.toggle('show', isOpen);
+    toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    overlay.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+    if (isOpen) menu.focus();
+    else toggleBtn.focus();
+  }
 
+  function closeMenu() {
+    const menu = document.getElementById('layout-menu');
+    const overlay = document.getElementById('overlay');
+    const toggleBtn = document.getElementById('menuToggle');
+    menu.classList.remove('open');
+    overlay.classList.remove('show');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    overlay.setAttribute('aria-hidden', 'true');
+    toggleBtn.focus();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const menu = document.getElementById('layout-menu');
+      if (menu.classList.contains('open')) closeMenu();
+    }
+  });
+
+  document.getElementById('layout-menu').setAttribute('tabindex', '-1');
+</script>
+
+</body>
+</html>
