@@ -8,16 +8,16 @@
 /* Body & font */
 body {
   font-family: "Courier New", Courier, monospace;
-  font-size: 14px;
   text-align: justify;
-  margin: 0;
-  padding: 0;
   padding-right: 0px;
+  margin: 0;
 }
 
 /* Headings */
-h1 { margin-top: 0; font-size: 40px; padding-left: 2.5px; padding-top: 11px;text-align: left;}
-h2 { margin-top: 0; font-size: 25px; padding-top: 6px;text-align: left;}
+h1, h2 {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
 
 /* Links */
 a:link, a:visited { color: blue; text-decoration: none; }
@@ -26,15 +26,27 @@ a:active { color: blue; }
 
 /* Layout */
 #layout-menu {
+  padding-top: 8px;
+  padding-left: 8px;
   padding-right: 40px;
   border-right: 1px solid white;
   background: white;
   font-size: 16px;
   width: 20%;
   text-align: left;
+  box-sizing: border-box;
 }
+
 #layout-menu .menu-item a { font-weight: bold; }
-#layout-content { padding-top: 0; }
+
+#layout-content {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.menu-item { margin-bottom: 10px; }
+.office-info h2 { margin: 8px 0; }
+iframe { max-width: 100%; }
 
 /* Flex Media Layouts */
 .media-row, .uncertainty-section {
@@ -46,19 +58,20 @@ a:active { color: blue; }
 }
 
 .video-container, .full-video-container { overflow: hidden; }
-.video-container video, .full-video-container video { width: 100%; height: auto; display: block; }
 
-/* Slideshow */
-.slideshow-container {
-  width: 400px;
-  height: 300px;
+/* Slideshow & Video Responsive Containers */
+.slideshow-container, .video-container, .full-video-container {
+  width: 400px; /* desktop default */
+  aspect-ratio: 4 / 3; /* maintain 4:3 ratio */
   position: relative;
   border: 1px solid white;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  margin: 0 auto;
 }
+
 .slideshow-container img {
   width: 100%;
   height: 100%;
@@ -70,6 +83,13 @@ a:active { color: blue; }
   transition: opacity 1s ease-in-out;
 }
 .slideshow-container img.active { opacity: 1; }
+
+.video-container video, .full-video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
 /* Caption */
 .caption { text-align: center; margin-top: 5px; font-size: 16px; font-weight: bold; }
@@ -107,7 +127,7 @@ a:active { color: blue; }
     position: fixed;
     top: 0;
     left: 0;
-    width: 300px;
+    width: 100%;
     height: 100%;
     background: white;
     border-right: 1px solid #ccc;
@@ -123,10 +143,25 @@ a:active { color: blue; }
     padding: 20px;
     width: 100%;
   }
+
+  /* Make all media responsive */
+  #layout-content img,
+  .slideshow-container,
+  .video-container,
+  .full-video-container,
+  #layout-content video {
+    width: 90%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .slideshow-container, .video-container, .full-video-container {
+    aspect-ratio: 4 / 3; /* maintain ratio on mobile */
+  }
+
   .menu-toggle { display: block; }
   .overlay.show { display: block; }
   .media-row, .uncertainty-section { flex-direction: column; align-items: center; }
-  .slideshow-container, .video-container, .full-video-container { width: 90%; height: auto; }
 }
 </style>
 </head>
@@ -142,7 +177,7 @@ a:active { color: blue; }
 <tr valign="top">
 
 <!-- Left menu -->
-<td id="layout-menu" tabindex="-1" style="border-right: 1px solid white; padding-right:40px;">
+<td id="layout-menu">
   <div class="menu-item" style="margin-bottom: 10px;"><a href="index.html" class="current">Home</a></div>
   <div class="menu-item" style="margin-bottom: 10px;"><a href="experience.html">Current Research Interests and Ongoing Work</a></div>
   <div class="menu-item" style="margin-bottom: 10px;"><a href="teaching.html">Teaching&nbsp;Area</a></div>
@@ -317,7 +352,6 @@ a:active { color: blue; }
 </tr>
 </table>
 
-
 <script>
 // Slideshow logic
 window.addEventListener('DOMContentLoaded', () => {
@@ -365,6 +399,5 @@ document.addEventListener('keydown', function(e) {
   }
 });
 </script>
-
 </body>
 </html>
