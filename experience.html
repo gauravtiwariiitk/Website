@@ -121,13 +121,17 @@ iframe { max-width: 100%; }
 
 /* Mobile layout */
 @media (max-width: 768px) {
+  .menu-toggle { 
+    display: block; 
+    z-index: 1000; /* higher than menu */
+  }
   body { padding-right: 20px; }
   #tlayout { display: block; }
   #layout-menu {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 350px;
     height: 100%;
     background: white;
     border-right: 1px solid #ccc;
@@ -135,7 +139,7 @@ iframe { max-width: 100%; }
     box-shadow: 2px 0 8px rgba(0,0,0,0.15);
     transform: translateX(-110%);
     transition: transform 0.28s ease;
-    z-index: 1000;
+    z-index: 1050;
     overflow-y: auto;
   }
   #layout-menu.open { transform: translateX(0); }
@@ -379,7 +383,8 @@ function toggleMenu() {
   overlay.classList.toggle('show', isOpen);
   toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   overlay.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-  if (isOpen) menu.focus(); else toggleBtn.focus();
+  if (isOpen) menu.focus();
+  else toggleBtn.focus();
 }
 
 function closeMenu() {
@@ -399,6 +404,7 @@ document.addEventListener('keydown', function(e) {
     if (menu.classList.contains('open')) closeMenu();
   }
 });
+
 </script>
 </body>
 </html>
