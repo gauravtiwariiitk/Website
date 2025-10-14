@@ -6,39 +6,29 @@
 <title>Gaurav Tiwari - IIT Kanpur</title>
 
 <style>
-  /* Basic page reset */
-  * { box-sizing: border-box; }
-  body {
-    font-family: "Courier New", Courier, monospace;
-    margin: 0;
-    color: #000;
-    line-height: 1.45;
-  }
+body {
+  font-family: "Courier New", Courier, monospace;
+  margin: 0;
+  color: #000;
+}
 
-  /* Links */
-  #layout-menu .menu-item a {
-    font-weight: bold;
-  }
-  a:link, a:visited {
-    color: blue;
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-  a:active {
-    color: blue;
-  }
+#layout-menu .menu-item a {
+  font-weight: bold;
+}
 
-  /* Table layout for desktop */
-  #tlayout { width: 100%; }
-  td { 
-vertical-align: top; }
+a:link, a:visited {
+  color: blue;
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+a:active { color: blue; }
 
-  /* Sidebar specifics */
+#tlayout { width: 100%; border-collapse: collapse; }
+td { vertical-align: top; }
+
 #layout-menu {
-  padding-top: 8px;
-  padding-left: 8px;
+  padding-top: 10px;
+  padding-left: 10px;
   padding-right: 40px;
   border-right: 1px solid white;
   background: white;
@@ -46,15 +36,23 @@ vertical-align: top; }
   width: 20%;
   text-align: left;
 }
-  .menu-item { margin-bottom: 10px; }
-  .office-info h2 { margin: 8px 0; }
-  iframe { max-width: 100%; }
 
-  /* Content area */
-  #layout-content {
-    padding: 20px;
-  }
-  img { max-width: 100%; height: auto; display: block; margin: 20px auto; }
+.menu-item { margin-bottom: 10px; }
+.office-info h2 { margin: 8px 0; }
+iframe { max-width: 100%; }
+
+#layout-content {
+  padding: 20px;
+  line-height: 1.45; /* moved here only */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
+
 
   /* Mobile: hamburger / responsive sidebar */
   .menu-toggle {
@@ -146,16 +144,16 @@ vertical-align: top; }
 
 <table summary="Table for page layout." id="tlayout">
 <tr valign="top">
-<td id="layout-menu" style="border-right: 1px solid white; padding-right:40px;">
-  <div class="menu-item" style="margin-bottom: 3px;"><a href="index.html" class="current">Home</a></div>
-  <div class="menu-item" style="margin-bottom: 3px;"><a href="experience.html">Current Research Interests and Ongoing Work</a></div>
-  <div class="menu-item" style="margin-bottom: 3px;"><a href="teaching.html">Teaching&nbsp;Area</a></div>
-  <div class="menu-item" style="margin-bottom: 3px;"><a href="publications.html">Research Profile and Publication Details</a></div>
-  <div class="menu-item" style="margin-bottom: 3px;"><a href="students.html">Student Guidance</a></div>
-  <div class="menu-item" style="margin-bottom: 3px;"><a href="awards.html">Awards&nbsp;and&nbsp;Recognitions</a></div>
-  <div class="menu-item" style="margin-bottom: 3px;"><a href="srp.html">Sponsored&nbsp;Research&nbsp;Projects</a></div>
-  <div class="menu-item" style="margin-bottom: 3px;"><a href="research.html">Administrative&nbsp;Responsibilities</a></div>
-  <div class="menu-item" style="margin-bottom: 3px;"><a href="lab.html">Lab&nbsp;Facilities</a></div>
+<td id="layout-menu">
+  <div class="menu-item" style="margin-bottom: 10px;"><a href="index.html" class="current">Home</a></div>
+  <div class="menu-item" style="margin-bottom: 10px;"><a href="experience.html">Current Research Interests and Ongoing Work</a></div>
+  <div class="menu-item" style="margin-bottom: 10px;"><a href="teaching.html">Teaching&nbsp;Area</a></div>
+  <div class="menu-item" style="margin-bottom: 10px;"><a href="publications.html">Research Profile and Publication Details</a></div>
+  <div class="menu-item" style="margin-bottom: 10px;"><a href="students.html">Student Guidance</a></div>
+  <div class="menu-item" style="margin-bottom: 10px;"><a href="awards.html">Awards&nbsp;and&nbsp;Recognitions</a></div>
+  <div class="menu-item" style="margin-bottom: 10px;"><a href="srp.html">Sponsored&nbsp;Research&nbsp;Projects</a></div>
+  <div class="menu-item" style="margin-bottom: 10px;"><a href="research.html">Administrative&nbsp;Responsibilities</a></div>
+  <div class="menu-item" style="margin-bottom: 10px;"><a href="lab.html">Lab&nbsp;Facilities</a></div>
   <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 10px">
 
   <!-- Office Info Below Menu -->
